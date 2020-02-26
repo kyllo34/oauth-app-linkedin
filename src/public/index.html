@@ -6,19 +6,21 @@
   </head>
   <body>
     <main>
-      <h1>Click below to login with GitHub</h1>
+      <h1>Click below to login with LinkedIn</h1>
       <a href="#" id="oauth">Login</a>
     </main>
 
     <script>
-      const URL = 'https://github.com/login/oauth/authorize'
+      const URL = 'https://www.linkedin.com/oauth/v2/authorization'
       const options = {
-        client_id: 'a5025f2d8bafd866cb1d',
-        redirect_uri: 'http://localhost:3000/oauth',
-        scope: '',
-        state: 'this is unguessable! mwahahaha'
+        response_type: 'code',
+        client_id: '868jilfj70kawu',
+        redirect_uri: 'https://localhost:3000/oauth',
+        state: 'aspodgijadoiuner48',
+        scope: 'r_liteprofile r_emailaddress w_member_social',
       }
 
+      console.log('help');
       const queryString = Object.keys(options).map(key => {
         return `${key}=${encodeURIComponent(options[key])}`
       }).join('&')
