@@ -1,21 +1,22 @@
 const superagent = require('superagent')
 const User = require('../models/users')
 
-const TOKEN_SERVER_URL = 'https://github.com/login/oauth/access_token'
-const CLIENT_ID = 'a5025f2d8bafd866cb1d'
-const CLIENT_SECRET = process.env.GITHUB_APP_CLIENT_SECRET
-const API_SERVER = 'http://localhost:3000/oauth'
-const REMOTE_API_ENDPOINT = 'https://api.github.com/user'
+const { CLIENT_ID, TOKEN_SERVER_URL, CLIENT_SECRET, API_SERVER, REMOTE_API_ENDPOINT, STATE } = process.env;
+// const TOKEN_SERVER_URL = 'https://github.com/login/oauth/access_token'
+// const CLIENT_ID = 'a5025f2d8bafd866cb1d'
+// const CLIENT_SECRET = process.env.GITHUB_APP_CLIENT_SECRET
+// const API_SERVER = 'http://localhost:3000/oauth'
+// const REMOTE_API_ENDPOINT = 'https://api.github.com/user'
 
 async function exchangeCodeForToken (code) {
   const response = await superagent
     .post(TOKEN_SERVER_URL)
     .send({
+      resonse_type: 'code',
       client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      code: code,
       redirect_uri: API_SERVER,
-      state: 'this is unguessable! mwahahaha'
+      client_secret: CLIENT_SECRET,
+      state: STATE,
     })
   return response.body.access_token
 }

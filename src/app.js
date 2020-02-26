@@ -1,16 +1,18 @@
 // Third-party resources
 const path = require('path')
-const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
+const express = require('express');
 
 // Prepare the express app
-const app = express()
+const secureExpress = require('https-localhost');
+const app = secureExpress();
 
 // App-level middleware
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
+// app.serve('public');
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
