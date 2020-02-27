@@ -5,8 +5,9 @@ const morgan = require('morgan')
 const express = require('express');
 
 // Prepare the express app
-const secureExpress = require('https-localhost');
-const app = secureExpress();
+const app = require('https-localhost')()
+// const app = secureExpress();
+// const app = express();
 
 // App-level middleware
 app.use(cors())
